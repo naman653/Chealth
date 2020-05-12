@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "350277096835",
+    "firebase_url": "https://chealth-48190.firebaseio.com",
+    "project_id": "chealth-48190",
+    "storage_bucket": "chealth-48190.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350277096835:android:baef3c310801796754d2b6",
+        "android_client_info": {
+          "package_name": "com.btp.chealth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "350277096835-b9e715so37lhfcios6kp3gcrj7qjmjle.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.btp.chealth",
+            "certificate_hash": "5316ed588c959d8a72c319515c5a4440c93225d8"
+          }
+        },
+        {
+          "client_id": "350277096835-b994gd56qfb8779ls2h9insck1jic779.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCvvYl7EpULrrZqCYrkiFmtiK6-4MDQVQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "350277096835-b994gd56qfb8779ls2h9insck1jic779.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

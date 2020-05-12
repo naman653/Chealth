@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Chealth</string>
+    <string name="title_home">Home</string>
+    <string name="title_feedback">Feedback</string>
+    <string name="title_news">News</string>
+    <string name="title_settings">Settings</string>
+    <string name="please_share_your_experience">Please Share your Experience</string>
+    <string name="submit">Submit</string>
+    <string name="feedback_submitted">Feedback Submitted Successfully</string>
+    <string name="input_empty">This field cannot be empty</string>
+    <string name="view_full_article">View Full Article</string>
+    <string name="news_article_image">News Article Image</string>
+
+    <string name="news_api_key">228b633c250a497195a20dccf5472a09</string>
+</resources>
