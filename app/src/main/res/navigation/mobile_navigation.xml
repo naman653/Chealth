@@ -28,4 +28,10 @@
         android:name="com.btp.chealth.fragments.SettingsFragment"
         android:label="@string/title_settings"
         tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/navigation_add_food"
+        android:name="com.btp.chealth.fragments.AddFoodFragment"
+        android:label="@string/title_add_food"
+        tools:layout="@layout/add_food_fragment" />
 </navigation>

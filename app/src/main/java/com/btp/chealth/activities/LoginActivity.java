@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.btp.chealth.R;
@@ -27,33 +28,47 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        authStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if(firebaseAuth.getCurrentUser() == null) {
-                    startActivityForResult(
-                            AuthUI.getInstance()
-                                    .createSignInIntentBuilder()
-                                    .setAvailableProviders(providers)
-                                    .build(),
-                            RC_SIGN_IN);
-                } else {
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    finish();
-                }
+        authStateListener = firebaseAuth -> {
+            if(firebaseAuth.getCurrentUser() == null) {
+                startActivityForResult(
+                        AuthUI.getInstance()
+                                .createSignInIntentBuilder()
+                                .setAvailableProviders(providers)
+                                .setIsSmartLockEnabled(false)
+                                .setLogo(R.mipmap.ic_launcher)
+                                .build(),
+                        RC_SIGN_IN);
+            } else {
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                finish();
             }
         };
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN) {
+            if (resultCode != RESULT_OK) {
+                finish();
+            }
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         FirebaseAuth.getInstance().addAuthStateListener(authStateListener);
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onPause() {
+        super.onPause();
         FirebaseAuth.getInstance().removeAuthStateListener(authStateListener);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

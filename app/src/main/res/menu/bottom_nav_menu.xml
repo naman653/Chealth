@@ -7,6 +7,11 @@
         android:title="@string/title_home" />
 
     <item
+        android:id="@+id/navigation_add_food"
+        android:icon="@drawable/ic_baseline_add_circle_24"
+        android:title="@string/title_add_food" />
+
+    <item
         android:id="@+id/navigation_news"
         android:icon="@drawable/ic_comment_black_24dp"
         android:title="@string/title_news" />

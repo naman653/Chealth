@@ -35,11 +35,15 @@ public class NewsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        NewsViewModel newsViewModel = ViewModelProviders.of(this).get(NewsViewModel.class);
-
         View root = inflater.inflate(R.layout.fragment_news, container, false);
         ButterKnife.bind(this, root);
-        Log.e("Lol", "Ji");
+        return root;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        NewsViewModel newsViewModel = ViewModelProviders.of(this).get(NewsViewModel.class);
 
         articleList.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         articles = new ArrayList<>();
@@ -53,6 +57,5 @@ public class NewsFragment extends Fragment {
                 newsAdapter.notifyDataSetChanged();
             }
         });
-        return root;
     }
 }
