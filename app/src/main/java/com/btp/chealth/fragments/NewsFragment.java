@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,8 @@ public class NewsFragment extends Fragment {
 
     @BindView(R.id.articleList)
     RecyclerView articleList;
+    @BindView(R.id.pbProgress)
+    ProgressBar progressBar;
 
     private ArrayList<Article> articles;
 
@@ -50,12 +53,18 @@ public class NewsFragment extends Fragment {
         NewsAdapter newsAdapter = new NewsAdapter(articles);
         articleList.setAdapter(newsAdapter);
 
-        newsViewModel.getNewsList().observe(getViewLifecycleOwner(), articleList -> {
+        newsViewModel.getArticles().observe(getViewLifecycleOwner(), articleList -> {
             if(articles != null) {
                 articles.clear();
                 articles.addAll(articleList);
                 newsAdapter.notifyDataSetChanged();
             }
+        });
+        newsViewModel.getProgressVisible().observe(getViewLifecycleOwner(), visible -> {
+            if (visible)
+                progressBar.setVisibility(View.VISIBLE);
+            else
+                progressBar.setVisibility(View.GONE);
         });
     }
 }

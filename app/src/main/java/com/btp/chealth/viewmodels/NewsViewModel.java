@@ -24,14 +24,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NewsViewModel extends ViewModel {
 
     private MutableLiveData<ArrayList<Article>> articles;
+    private MutableLiveData<Boolean> progressVisible;
 
     public NewsViewModel() {
         articles = new MutableLiveData<>();
+        progressVisible = new MutableLiveData<>();
         articles.setValue(new ArrayList<>());
+        progressVisible.setValue(true);
         init();
     }
 
     public void init() {
+        progressVisible.setValue(true);
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(Constants.NEWS_BASE_URL)
@@ -47,6 +51,7 @@ public class NewsViewModel extends ViewModel {
                 } else {
                     Log.e("Lol", response.message());
                 }
+                progressVisible.setValue(false);
             }
 
             @Override
@@ -56,7 +61,11 @@ public class NewsViewModel extends ViewModel {
         });
     }
 
-    public LiveData<ArrayList<Article>> getNewsList() {
+    public MutableLiveData<ArrayList<Article>> getArticles() {
         return articles;
+    }
+
+    public MutableLiveData<Boolean> getProgressVisible() {
+        return progressVisible;
     }
 }

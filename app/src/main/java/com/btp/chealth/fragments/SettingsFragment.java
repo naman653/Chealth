@@ -86,7 +86,7 @@ public class SettingsFragment extends Fragment {
         });
         mViewModel.getProgressVisible().observe(getViewLifecycleOwner(), visible -> {
             if (visible)
-                profilePic.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
             else
                 progressBar.setVisibility(View.GONE);
         });
