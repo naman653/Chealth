@@ -3,7 +3,6 @@ package com.btp.chealth.activities;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -39,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
                                 .build(),
                         RC_SIGN_IN);
             } else {
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                startActivity(new Intent(LoginActivity.this, EditProfileActivity.class));
                 finish();
             }
         };

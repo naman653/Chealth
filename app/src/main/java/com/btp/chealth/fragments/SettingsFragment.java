@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,8 +18,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.btp.chealth.R;
+import com.btp.chealth.activities.EditProfileActivity;
 import com.btp.chealth.activities.LoginActivity;
-import com.btp.chealth.activities.MainActivity;
 import com.btp.chealth.viewmodels.SettingsViewModel;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,7 +28,9 @@ import com.google.firebase.auth.FirebaseUser;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnLongClick;
+
+import static com.btp.chealth.utils.Constants.EDIT_CODE;
+import static com.btp.chealth.utils.Constants.IS_EDIT;
 
 public class SettingsFragment extends Fragment {
 
@@ -40,10 +44,14 @@ public class SettingsFragment extends Fragment {
     TextView email;
     @BindView(R.id.tvWeight)
     TextView weight;
+    @BindView(R.id.tvHeight)
+    TextView height;
     @BindView(R.id.tvName)
     TextView name;
     @BindView(R.id.tvSex)
     TextView sex;
+    @BindView(R.id.pbProgress)
+    ProgressBar progressBar;
 
     private SettingsViewModel mViewModel;
 
@@ -65,10 +73,23 @@ public class SettingsFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(SettingsViewModel.class);
         // TODO: Use the ViewModel
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Glide.with(getContext()).load(user.getPhotoUrl()).into(profilePic);
-        name.setText(user.getDisplayName());
-        email.setText(user.getEmail());
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        Glide.with(getContext()).load(currentUser.getPhotoUrl()).into(profilePic);
+        name.setText(currentUser.getDisplayName());
+        email.setText(currentUser.getEmail());
+        mViewModel.getUser().observe(getViewLifecycleOwner(), user -> {
+            age.setText(String.format("%s Yrs", user.getAge()));
+            sex.setText(user.getSex());
+            weight.setText(String.format("%s Kgs", user.getWeight()));
+            height.setText(String.format("%s Mts", user.getHeightFoot()));
+            bmi.setText(user.getBmi());
+        });
+        mViewModel.getProgressVisible().observe(getViewLifecycleOwner(), visible -> {
+            if (visible)
+                profilePic.setVisibility(View.VISIBLE);
+            else
+                progressBar.setVisibility(View.GONE);
+        });
     }
 
     @OnClick(R.id.btLogOut)
@@ -83,5 +104,25 @@ public class SettingsFragment extends Fragment {
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.action_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_edit:
+                Intent i = new Intent(getContext(), EditProfileActivity.class);
+                i.putExtra(IS_EDIT, true);
+                startActivityForResult(i, EDIT_CODE);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == EDIT_CODE) {
+            mViewModel.init();
+        }
     }
 }

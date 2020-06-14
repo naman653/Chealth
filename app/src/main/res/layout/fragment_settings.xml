@@ -108,7 +108,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="20"
                 android:textSize="20sp"/>
 
         </LinearLayout>
@@ -140,7 +139,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Male"
                 android:textSize="20sp"/>
 
         </LinearLayout>
@@ -172,7 +170,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="58.0 Kg"
                 android:textSize="20sp"/>
 
         </LinearLayout>
@@ -199,11 +196,11 @@
                 android:textSize="20sp"/>
 
             <TextView
+                android:id="@+id/tvHeight"
                 android:layout_gravity="end"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="1.8 m"
                 android:textSize="20sp"/>
 
         </LinearLayout>
@@ -235,7 +232,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="17.5"
                 android:textSize="20sp"/>
 
         </LinearLayout>
@@ -254,6 +250,16 @@
             app:layout_constraintTop_toBottomOf="@id/bmi"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
+
+        <ProgressBar
+            android:id="@+id/pbProgress"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:elevation="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

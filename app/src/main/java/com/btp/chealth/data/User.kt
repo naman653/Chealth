@@ -2,10 +2,9 @@ package com.btp.chealth.data
 
 data class User (
         var userid: String = "",
-        var age: Int = 0,
+        var age: String = "",
         var sex: String = "",
-        var weight: Int = 0,
-        var heightFoot: Int = 0,
-        var heightInch: Int = 0,
-        var bmi: Double = 0.0
+        var weight: String = "",
+        var heightFoot: String = "",
+        var bmi: String = ""
 )
