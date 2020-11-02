@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.btp.chealth.R;
 import com.btp.chealth.data.User;
+import com.btp.chealth.utils.PrefService;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,11 +25,16 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.btp.chealth.utils.Constants.AGE;
+import static com.btp.chealth.utils.Constants.BMI;
 import static com.btp.chealth.utils.Constants.FEMALE;
+import static com.btp.chealth.utils.Constants.GENDER;
+import static com.btp.chealth.utils.Constants.HEIGHT;
 import static com.btp.chealth.utils.Constants.IS_EDIT;
 import static com.btp.chealth.utils.Constants.MALE;
 import static com.btp.chealth.utils.Constants.OTHER;
 import static com.btp.chealth.utils.Constants.USER;
+import static com.btp.chealth.utils.Constants.WEIGHT;
 
 public class EditProfileActivity extends AppCompatActivity {
 
@@ -98,8 +104,11 @@ public class EditProfileActivity extends AppCompatActivity {
                 user = new User();
             user.setUserid(currentUser.getUid());
             user.setAge(age.getText().toString());
+            PrefService.getInstance().saveData(AGE, user.getAge());
             user.setHeightFoot(height.getText().toString());
+            PrefService.getInstance().saveData(HEIGHT, user.getHeightFoot());
             user.setWeight(weight.getText().toString());
+            PrefService.getInstance().saveData(WEIGHT, user.getWeight());
             switch (gender.getCheckedRadioButtonId()) {
                 case R.id.rbMale:
                     user.setSex(MALE);
@@ -111,10 +120,12 @@ public class EditProfileActivity extends AppCompatActivity {
                     user.setSex(OTHER);
                     break;
             }
+            PrefService.getInstance().saveData(GENDER, user.getSex());
             double heightM = Double.parseDouble(user.getHeightFoot());
             double weightKg = Double.parseDouble(user.getWeight());
             double bmi = weightKg / (heightM * heightM);
             user.setBmi((bmi + "").substring(0, 5));
+            PrefService.getInstance().saveData(BMI, user.getBmi());
             progressBar.setVisibility(View.VISIBLE);
             FirebaseFirestore.getInstance()
                     .collection(USER)

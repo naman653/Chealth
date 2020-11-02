@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.btp.chealth.R;
 import com.btp.chealth.activities.EditProfileActivity;
 import com.btp.chealth.activities.LoginActivity;
+import com.btp.chealth.utils.PrefService;
 import com.btp.chealth.viewmodels.SettingsViewModel;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +30,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.btp.chealth.utils.Constants.AGE;
 import static com.btp.chealth.utils.Constants.EDIT_CODE;
 import static com.btp.chealth.utils.Constants.IS_EDIT;
 
@@ -77,19 +79,11 @@ public class SettingsFragment extends Fragment {
         Glide.with(getContext()).load(currentUser.getPhotoUrl()).into(profilePic);
         name.setText(currentUser.getDisplayName());
         email.setText(currentUser.getEmail());
-        mViewModel.getUser().observe(getViewLifecycleOwner(), user -> {
-            age.setText(String.format("%s Yrs", user.getAge()));
-            sex.setText(user.getSex());
-            weight.setText(String.format("%s Kgs", user.getWeight()));
-            height.setText(String.format("%s Mts", user.getHeightFoot()));
-            bmi.setText(user.getBmi());
-        });
-        mViewModel.getProgressVisible().observe(getViewLifecycleOwner(), visible -> {
-            if (visible)
-                progressBar.setVisibility(View.VISIBLE);
-            else
-                progressBar.setVisibility(View.GONE);
-        });
+        age.setText(String.format("%s Yrs", PrefService.getInstance().getString(AGE, "")));
+        sex.setText(PrefService.getInstance().getString(AGE, ""));
+        weight.setText(String.format("%s Kgs", PrefService.getInstance().getString(AGE, "")));
+        height.setText(String.format("%s Mts", PrefService.getInstance().getString(AGE, "")));
+        bmi.setText(PrefService.getInstance().getString(AGE, ""));
     }
 
     @OnClick(R.id.btLogOut)

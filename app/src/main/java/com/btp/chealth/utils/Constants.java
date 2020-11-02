@@ -4,6 +4,7 @@ public class Constants {
     private Constants(){};
 
     public static final String NEWS_BASE_URL = "https://newsapi.org/";
+    public static final String CHEALTH_BASE_URL = "https://nutrition-btp.herokuapp.com/";
 
     // Request Codes
     public static final int RC_SIGN_IN = 1;
@@ -20,4 +21,13 @@ public class Constants {
     public static final String MALE = "Male";
     public static final String FEMALE = "Female";
     public static final String OTHER = "Other";
+
+    // PrefService keys
+    public static final String AGE = "age";
+    public static final String GENDER = "gender";
+    public static final String WEIGHT = "weight";
+    public static final String HEIGHT = "height";
+    public static final String TYPE = "type";
+    public static final String NAME = "name";
+    public static final String BMI = "bmi";
 }

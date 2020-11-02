@@ -2,7 +2,6 @@ package com.btp.chealth.viewmodels;
 
 import android.util.Log;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -10,10 +9,7 @@ import com.btp.chealth.data.Article;
 import com.btp.chealth.service.RetrofitService;
 import com.btp.chealth.utils.Constants;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,9 +38,9 @@ public class NewsViewModel extends ViewModel {
                 .build();
         RetrofitService retrofitService = retrofit.create(RetrofitService.class);
 
-        retrofitService.getNewsArticles("health", "228b633c250a497195a20dccf5472a09").enqueue(new Callback<com.btp.chealth.data.Response>() {
+        retrofitService.getNewsArticles("health", "228b633c250a497195a20dccf5472a09").enqueue(new Callback<com.btp.chealth.data.NewsResponse>() {
             @Override
-            public void onResponse(Call<com.btp.chealth.data.Response> call, Response<com.btp.chealth.data.Response> response) {
+            public void onResponse(Call<com.btp.chealth.data.NewsResponse> call, Response<com.btp.chealth.data.NewsResponse> response) {
                 Log.e("Lol outIfOnResponse", response.raw().request().url().toString());
                 if(response.isSuccessful()) {
                     articles.setValue(response.body().getArticles());
@@ -55,7 +51,7 @@ public class NewsViewModel extends ViewModel {
             }
 
             @Override
-            public void onFailure(Call<com.btp.chealth.data.Response> call, Throwable t) {
+            public void onFailure(Call<com.btp.chealth.data.NewsResponse> call, Throwable t) {
                 Log.e("Lol onFailure", t.getMessage());
             }
         });

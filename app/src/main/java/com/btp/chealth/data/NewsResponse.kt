@@ -1,5 +1,5 @@
 package com.btp.chealth.data
 
-class Response {
+class NewsResponse {
     var articles: ArrayList<Article> = ArrayList();
 }
