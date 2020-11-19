@@ -21,6 +21,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -105,8 +109,8 @@ public class EditProfileActivity extends AppCompatActivity {
             user.setUserid(currentUser.getUid());
             user.setAge(age.getText().toString());
             PrefService.getInstance().saveData(AGE, user.getAge());
-            user.setHeightFoot(height.getText().toString());
-            PrefService.getInstance().saveData(HEIGHT, user.getHeightFoot());
+            user.setHeight(height.getText().toString());
+            PrefService.getInstance().saveData(HEIGHT, user.getHeight());
             user.setWeight(weight.getText().toString());
             PrefService.getInstance().saveData(WEIGHT, user.getWeight());
             switch (gender.getCheckedRadioButtonId()) {
@@ -121,11 +125,21 @@ public class EditProfileActivity extends AppCompatActivity {
                     break;
             }
             PrefService.getInstance().saveData(GENDER, user.getSex());
-            double heightM = Double.parseDouble(user.getHeightFoot());
+            double heightM = Double.parseDouble(user.getHeight());
             double weightKg = Double.parseDouble(user.getWeight());
             double bmi = weightKg / (heightM * heightM);
             user.setBmi((bmi + "").substring(0, 5));
             PrefService.getInstance().saveData(BMI, user.getBmi());
+
+            List<String> heightList = user.getHeightList();
+            heightList.add(user.getHeight());
+
+            List<String> weightList = user.getWeightList();
+            weightList.add(user.getWeight());
+
+            List<String> dateList = user.getDateList();
+            dateList.add(getTimeStamp());
+
             progressBar.setVisibility(View.VISIBLE);
             FirebaseFirestore.getInstance()
                     .collection(USER)
@@ -157,7 +171,7 @@ public class EditProfileActivity extends AppCompatActivity {
             case OTHER:
                 other.setChecked(true);
         }
-        height.setText(user.getHeightFoot());
+        height.setText(user.getHeight());
         weight.setText(user.getWeight());
     }
 
@@ -180,5 +194,11 @@ public class EditProfileActivity extends AppCompatActivity {
             Toast.makeText(this, "Enter gender", Toast.LENGTH_SHORT).show();
         }
         return isValid;
+    }
+
+    private String getTimeStamp() {
+        SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yy");
+        String date = DATE_FORMAT.format(new Date(System.currentTimeMillis()));
+        return date;
     }
 }

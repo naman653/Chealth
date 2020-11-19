@@ -1,15 +1,11 @@
 package com.btp.chealth.data
 
 data class MealResponse(
-        var calorie: Int = 0,
-        var protienItem: String = "",
-        var protienQun: String = "",
-        var fruitItem: String = "",
-        var fruitQun: String = "",
-        var vegeItem: String = "",
-        var vegeQun: String = "",
-        var grainItem: String = "",
-        var grainQun: String = "",
-        var dairyItem: String = "",
-        var dairyQun: String = ""
+        var Mon: DayMeal,
+        var Tues: DayMeal,
+        var Wed: DayMeal,
+        var Thurs: DayMeal,
+        var Fri: DayMeal,
+        var Sat: DayMeal,
+        var Sun: DayMeal
 )

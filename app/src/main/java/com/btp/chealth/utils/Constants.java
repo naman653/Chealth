@@ -4,7 +4,7 @@ public class Constants {
     private Constants(){};
 
     public static final String NEWS_BASE_URL = "https://newsapi.org/";
-    public static final String CHEALTH_BASE_URL = "https://nutrition-btp.herokuapp.com/";
+    public static final String CHEALTH_BASE_URL = "https://nutrition-btp.herokuapp.com";
 
     // Request Codes
     public static final int RC_SIGN_IN = 1;

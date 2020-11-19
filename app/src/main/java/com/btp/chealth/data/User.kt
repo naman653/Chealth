@@ -5,6 +5,9 @@ data class User (
         var age: String = "",
         var sex: String = "",
         var weight: String = "",
-        var heightFoot: String = "",
-        var bmi: String = ""
+        var height: String = "",
+        var bmi: String = "",
+        var weightList: List<String> = mutableListOf(),
+        var heightList: List<String> = mutableListOf(),
+        var dateList: List<String> = mutableListOf()
 )

@@ -5,9 +5,16 @@
     android:layout_height="match_parent"
     tools:context=".fragments.AddFoodFragment">
 
-    <TextView
+    <ExpandableListView
+        android:id="@+id/list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="match_parent" />
+
+    <ProgressBar
+        android:id="@+id/pbProgress"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:elevation="4dp"
+        android:layout_gravity="center"/>
 
 </FrameLayout>

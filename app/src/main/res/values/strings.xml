@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Chealth</string>
     <string name="title_home">Home</string>
-    <string name="title_add_food">Add Food</string>
+    <string name="title_add_food">Meal Plan</string>
     <string name="title_feedback">Feedback</string>
     <string name="title_news">News</string>
     <string name="title_settings">Settings</string>

@@ -8,7 +8,7 @@
 
     <item
         android:id="@+id/navigation_add_food"
-        android:icon="@drawable/ic_baseline_add_circle_24"
+        android:icon="@drawable/ic_baseline_food_bank_24"
         android:title="@string/title_add_food" />
 
     <item

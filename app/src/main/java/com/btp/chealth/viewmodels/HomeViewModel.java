@@ -23,12 +23,4 @@ public class HomeViewModel extends ViewModel {
         return mText;
     }
 
-    public void init() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(Constants.CHEALTH_BASE_URL)
-                .build();
-
-        ChealthService chealthService = retrofit.create(ChealthService.class);
-    }
 }

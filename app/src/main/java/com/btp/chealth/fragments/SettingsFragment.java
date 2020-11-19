@@ -31,8 +31,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.btp.chealth.utils.Constants.AGE;
+import static com.btp.chealth.utils.Constants.BMI;
 import static com.btp.chealth.utils.Constants.EDIT_CODE;
+import static com.btp.chealth.utils.Constants.GENDER;
+import static com.btp.chealth.utils.Constants.HEIGHT;
 import static com.btp.chealth.utils.Constants.IS_EDIT;
+import static com.btp.chealth.utils.Constants.WEIGHT;
 
 public class SettingsFragment extends Fragment {
 
@@ -52,8 +56,6 @@ public class SettingsFragment extends Fragment {
     TextView name;
     @BindView(R.id.tvSex)
     TextView sex;
-    @BindView(R.id.pbProgress)
-    ProgressBar progressBar;
 
     private SettingsViewModel mViewModel;
 
@@ -80,10 +82,10 @@ public class SettingsFragment extends Fragment {
         name.setText(currentUser.getDisplayName());
         email.setText(currentUser.getEmail());
         age.setText(String.format("%s Yrs", PrefService.getInstance().getString(AGE, "")));
-        sex.setText(PrefService.getInstance().getString(AGE, ""));
-        weight.setText(String.format("%s Kgs", PrefService.getInstance().getString(AGE, "")));
-        height.setText(String.format("%s Mts", PrefService.getInstance().getString(AGE, "")));
-        bmi.setText(PrefService.getInstance().getString(AGE, ""));
+        sex.setText(PrefService.getInstance().getString(GENDER, ""));
+        weight.setText(String.format("%s Kgs", PrefService.getInstance().getString(WEIGHT, "")));
+        height.setText(String.format("%s Mts", PrefService.getInstance().getString(HEIGHT, "")));
+        bmi.setText(PrefService.getInstance().getString(BMI, ""));
     }
 
     @OnClick(R.id.btLogOut)
@@ -116,7 +118,12 @@ public class SettingsFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == EDIT_CODE) {
-            mViewModel.init();
+//            mViewModel.init();
+            age.setText(String.format("%s Yrs", PrefService.getInstance().getString(AGE, "")));
+            sex.setText(PrefService.getInstance().getString(GENDER, ""));
+            weight.setText(String.format("%s Kgs", PrefService.getInstance().getString(WEIGHT, "")));
+            height.setText(String.format("%s Mts", PrefService.getInstance().getString(HEIGHT, "")));
+            bmi.setText(PrefService.getInstance().getString(BMI, ""));
         }
     }
 }
