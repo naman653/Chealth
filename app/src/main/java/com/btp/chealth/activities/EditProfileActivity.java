@@ -181,6 +181,10 @@ public class EditProfileActivity extends AppCompatActivity {
             isValid = false;
             age.setError("Enter your age");
         }
+        if (Integer.parseInt(age.getText().toString()) > 12) {
+            isValid = false;
+            age.setError("Age should not be greater than 12");
+        }
         if (weight.getText().toString().isEmpty()) {
             isValid = false;
             weight.setError("Enter your weight");
