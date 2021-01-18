@@ -19,7 +19,7 @@ public class PrefService {
     private SharedPreferences.Editor editor;
 
     PrefService() {
-        sharedPreferences = ChealthApp.getAppContext().getSharedPreferences("com.altsaas.docto", Context.MODE_PRIVATE);
+        sharedPreferences = ChealthApp.getAppContext().getSharedPreferences("com.btp.chealth", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
     }
 

@@ -29,13 +29,6 @@ public class AddFoodViewModel extends ViewModel {
 
     public AddFoodViewModel() {
         mealResponse = new MutableLiveData<>();
-//        mealResponse.setValue(new MealResponse(new DayMeal("break", "lunch" ,"dinner"),
-//                new DayMeal("break", "lunch" ,"dinner"),
-//                new DayMeal("break", "lunch" ,"dinner"),
-//                new DayMeal("break", "lunch" ,"dinner"),
-//                new DayMeal("break", "lunch" ,"dinner"),
-//                new DayMeal("break", "lunch" ,"dinner"),
-//                new DayMeal("break", "lunch" ,"dinner")));
         init();
     }
 
@@ -61,12 +54,12 @@ public class AddFoodViewModel extends ViewModel {
                         if (response.body() != null) {
                             mealResponse.setValue(response.body());
                         }
-                        Log.e("asdf", call.request().toString());
+                        Log.e(AddFoodViewModel.class.getName(), call.request().toString());
                     }
 
                     @Override
                     public void onFailure(Call<MealResponse> call, Throwable t) {
-                        Log.e("asdf", call.request().toString());
+                        Log.e(AddFoodViewModel.class.getName(), call.request().toString());
                     }
                 });
     }
